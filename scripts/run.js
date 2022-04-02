@@ -5,6 +5,23 @@ async function main() {
   await contract.deployed();
   console.log("Contract deployed to:", contract.address);
 
+  let tx = await contract.mintRequest();
+  tx.wait();
+
+  tx = await contract.setTokenURI('test');
+  tx.wait();
+
+  console.log('owner end.');
+
+  tx = await contract.transferOwnership(other1.address);
+  tx.wait();
+
+  tx = await contract.mintRequest();
+  tx.wait();
+
+  tx = await contract.connect(other1).setTokenURI('test');
+  tx.wait();
+
   console.log('finish.')
   
 }

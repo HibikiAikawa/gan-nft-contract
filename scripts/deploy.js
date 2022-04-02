@@ -1,5 +1,4 @@
 async function main() {
-  const [owner, other1, other2] = await hre.ethers.getSigners();
   const contractFactory = await hre.ethers.getContractFactory("GanNft");
   const contract = await contractFactory.deploy();
   await contract.deployed();
